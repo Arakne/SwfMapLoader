@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class SimpleMap<C extends MapCell> implements DofusMap<C> {
     final private Dimensions dimensions;
-    final private List<C> cells;
 
+    final protected List<C> cells;
     final protected SwfMapStructure structure;
 
     @SuppressWarnings("unchecked")

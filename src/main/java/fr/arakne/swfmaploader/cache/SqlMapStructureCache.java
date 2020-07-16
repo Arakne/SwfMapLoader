@@ -2,6 +2,7 @@ package fr.arakne.swfmaploader.cache;
 
 import fr.arakne.swfmaploader.swf.SwfMapStructure;
 
+import java.io.File;
 import java.sql.*;
 import java.util.Optional;
 
@@ -175,6 +176,12 @@ final public class SqlMapStructureCache implements MapStructureCache {
      * @return The cache instance
      */
     static public SqlMapStructureCache createBySqliteFile(String filename) throws SQLException {
+        File file = new File(filename);
+
+        if (!file.exists() && !file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+
         return new SqlMapStructureCache(DriverManager.getConnection("jdbc:sqlite:" + filename));
     }
 }

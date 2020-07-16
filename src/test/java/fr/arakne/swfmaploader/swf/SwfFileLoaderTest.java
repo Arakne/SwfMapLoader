@@ -86,6 +86,13 @@ class SwfFileLoaderTest {
     }
 
     @Test
+    void loadNotFound() {
+        File file = new File("./files/not_found.swf");
+
+        assertThrows(IOException.class, () -> loader.load(file.toURI().toURL()));
+    }
+
+    @Test
     void loadInvalidMapData() {
         File file = new File("./files/invalid_map_data.swf");
 

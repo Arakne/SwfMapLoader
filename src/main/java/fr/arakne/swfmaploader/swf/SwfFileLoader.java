@@ -78,7 +78,7 @@ final public class SwfFileLoader {
      * @throws IllegalArgumentException When the swf file do not contains a valid map structure
      */
     synchronized public SwfMapStructure load(URL mapFileUrl) throws IOException, InterruptedException {
-        File outdir = new File(tempDir + File.separator + StringUtils.split(mapFileUrl.getPath(), "/")[1]);
+        File outdir = new File(tempDir + File.separator + StringUtils.substringAfterLast(mapFileUrl.getPath(), "/"));
         outdir.mkdirs();
 
         try (InputStream stream = mapFileUrl.openStream()) {
@@ -217,6 +217,10 @@ final public class SwfFileLoader {
     }
 
     private void clearTemp(File tempdir) throws IOException {
+        if (!tempdir.exists()) {
+            return;
+        }
+
         Files.walkFileTree(tempdir.toPath(), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {

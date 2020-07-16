@@ -163,8 +163,18 @@ class SqlMapStructureCacheTest {
     @Test
     void createBySqliteFile() throws SQLException {
         File sqliteFile = new File("tmp/map_cache.sqlite");
+
+        if (sqliteFile.exists()) {
+            sqliteFile.delete();
+        }
+
+        if (sqliteFile.getParentFile().exists()) {
+            sqliteFile.getParentFile().delete();
+        }
+
         SqlMapStructureCache fileCache = SqlMapStructureCache.createBySqliteFile(sqliteFile.getAbsolutePath());
 
+        assertTrue(sqliteFile.getParentFile().exists());
         assertTrue(sqliteFile.exists());
 
         SwfMapStructure structure = new SwfMapStructure();
