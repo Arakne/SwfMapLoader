@@ -13,13 +13,31 @@
 
     <groupId>fr.arakne</groupId>
     <artifactId>swf-map-loader</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1-alpha</version>
+    <name>Swf Map Loader</name>
+    <description>Load Dofus 1.29 maps from SWF file.</description>
+    <url>https://github.com/Arakne/SwfMapLoader</url>
+
+    <licenses>
+        <license>
+            <name>The GNU Lesser General Public License</name>
+            <url>https://www.gnu.org/licenses/licenses.en.html#LGPL</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Vincent Quatrevieux</name>
+            <email>quatrevieux.vincent+arakne@gmail.com</email>
+            <url>https://github.com/vincent4vx</url>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
             <groupId>fr.arakne</groupId>
             <artifactId>arakne-map</artifactId>
-            <version>0.2-alpha</version>
+            <version>[0.2-alpha,)</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -196,6 +214,12 @@
             </build>
         </profile>
     </profiles>
+
+    <scm>
+        <connection>scm:git:git://github.com/Arakne/SwfMapLoader.git</connection>
+        <developerConnection>scm:git:ssh://github.com:Arakne/SwfMapLoader.git</developerConnection>
+        <url>http://github.com/Arakne/SwfMapLoader/tree/master</url>
+    </scm>
 
     <distributionManagement>
         <snapshotRepository>

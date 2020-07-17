@@ -9,6 +9,7 @@ import fr.arakne.utils.maps.MapCell;
 import fr.arakne.utils.maps.serializer.DefaultMapDataSerializer;
 import fr.arakne.utils.maps.serializer.MapDataSerializer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -96,7 +97,7 @@ final public class MapLoader<C extends MapCell, M extends DofusMap<C>> {
      * @return The serializer
      */
     private MapDataSerializer serializer(String key) {
-        return key == null ? serializer : serializer.withKey(key);
+        return key == null || key.isEmpty() ? serializer : serializer.withKey(key);
     }
 
     /**

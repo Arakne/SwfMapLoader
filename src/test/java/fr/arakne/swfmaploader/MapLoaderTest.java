@@ -42,6 +42,16 @@ class MapLoaderTest {
     }
 
     @Test
+    void loadSuccessWithEmptyStringAsKey() {
+        SimpleMap<SimpleMapCell> map = loader.load(41, "0701241437", "");
+
+        assertEquals(479, map.size());
+        assertEquals(15, map.dimensions().width());
+        assertEquals(17, map.dimensions().height());
+        assertTrue(map.get(310).walkable());
+    }
+
+    @Test
     void loadSuccessWithKey() {
         SimpleMap<SimpleMapCell> map = loader.load(4250, "0706131721", "2e46236e487e32342d7e505151756f405e705d7065555c6e717a305d6e2075497e417a3973656b6c724344223c6126575166273f577c7e772c4d726361593e3b617d6a3b42756f5b3173544a7a216e2f5a6149383931577b3c397e7539632166494c6568475a70704d2a3c28455b3f4143734d7c3a7c2532357e65572a7638645153516d303f746e264b784e6e704a3f432a626d245721");
 

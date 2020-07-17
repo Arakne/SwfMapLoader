@@ -55,7 +55,7 @@ final public class SwfFileLoader {
      * @throws IllegalArgumentException When the swf file do not contains a valid map structure
      */
     public SwfMapStructure load(int id, String version, String key) throws IOException, InterruptedException {
-        SwfMapStructure structure = load(new URL(baseUrl + "/" + id + "_" + version + (key == null ? "" : "X") + ".swf"));
+        SwfMapStructure structure = load(new URL(baseUrl + "/" + id + "_" + version + (key == null || key.isEmpty() ? "" : "X") + ".swf"));
 
         structure.setVersion(version);
 
