@@ -114,4 +114,4 @@ MyMap map = loader.load(swfFile.toURI().toURL(), mapKey);
 This project is licensed under the LGPLv3 licence. See [COPYING](./COPYING) and [COPYING.LESSER](./COPYING.LESSER) files for details.
 
 It also links [FFDec Library](https://github.com/jindrapetrik/jpexs-decompiler) which is licensed with GNU LGPL v3, for parsing SWF files.
-See [lib/ffdec](lib/ffdec) for more details.  
+See [lib/ffdec](lib/com/jpexs/ffdec-lib) for more details.
