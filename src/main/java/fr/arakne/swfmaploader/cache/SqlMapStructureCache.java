@@ -1,9 +1,33 @@
+/*
+ * This file is part of Swf Map Loader.
+ *
+ * Swf Map Loader is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Swf Map Loader is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Swf Map Loader.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * Copyright (c) 2020-2020 Vincent Quatrevieux
+ */
+
 package fr.arakne.swfmaploader.cache;
 
 import fr.arakne.swfmaploader.swf.SwfMapStructure;
 
 import java.io.File;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 
 /**
@@ -73,7 +97,7 @@ final public class SqlMapStructureCache implements MapStructureCache {
     @Override
     public void clear() {
         try {
-            connection.createStatement().execute("DELETE  FROM `MAP_CACHE`");
+            executeQuery("DELETE FROM `MAP_CACHE`");
         } catch (SQLException e) {
             throw new RuntimeException("Cannot clear map cache", e);
         }
@@ -89,7 +113,7 @@ final public class SqlMapStructureCache implements MapStructureCache {
         boolean checkVersion = checkSchemaVersion();
 
         if (hasTable && !checkVersion) {
-            connection.createStatement().execute("DROP TABLE `MAP_CACHE`");
+            executeQuery("DROP TABLE `MAP_CACHE`");
             hasTable = false;
         }
 
@@ -107,7 +131,7 @@ final public class SqlMapStructureCache implements MapStructureCache {
      */
     private boolean checkSchemaVersion() throws SQLException {
         if (!hasTable("SCHEMA_VERSION")) {
-            connection.createStatement().execute("CREATE TABLE `SCHEMA_VERSION` (`VERSION` INTEGER PRIMARY KEY)");
+            executeQuery("CREATE TABLE `SCHEMA_VERSION` (`VERSION` INTEGER PRIMARY KEY)");
 
             return false;
         }
@@ -115,7 +139,9 @@ final public class SqlMapStructureCache implements MapStructureCache {
         try (PreparedStatement stmt = connection.prepareStatement("SELECT `VERSION` FROM `SCHEMA_VERSION` WHERE `VERSION` = ?")) {
             stmt.setInt(1, SCHEMA_VERSION);
 
-            return stmt.executeQuery().next();
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 
@@ -130,12 +156,10 @@ final public class SqlMapStructureCache implements MapStructureCache {
         try (PreparedStatement stmt = connection.prepareStatement("SELECT `name` FROM  `sqlite_master` WHERE `type` = 'table' AND `name` = ?")) {
             stmt.setString(1, tableName);
 
-            if (!stmt.executeQuery().next()) {
-                return false;
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
             }
         }
-
-        return true;
     }
 
     /**
@@ -152,7 +176,7 @@ final public class SqlMapStructureCache implements MapStructureCache {
      * Create the table
      */
     private void createCacheTable() throws SQLException {
-        connection.createStatement().execute(
+        executeQuery(
             "CREATE TABLE `MAP_CACHE` (" +
                 "`ID` INTEGER PRIMARY KEY, " +
                 "`VERSION` VARCHAR(32), " +
@@ -166,6 +190,15 @@ final public class SqlMapStructureCache implements MapStructureCache {
                 "`MAP_DATA` BLOB" +
             ")"
         );
+    }
+
+    /**
+     * Execute a simple SQL query
+     */
+    private void executeQuery(String query) throws SQLException {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.execute(query);
+        }
     }
 
     /**
