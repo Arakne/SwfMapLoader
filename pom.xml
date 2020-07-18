@@ -13,7 +13,7 @@
 
     <groupId>fr.arakne</groupId>
     <artifactId>swf-map-loader</artifactId>
-    <version>0.1-alpha</version>
+    <version>0.1-SNAPSHOT</version>
     <name>Swf Map Loader</name>
     <description>Load Dofus 1.29 maps from SWF file.</description>
     <url>https://github.com/Arakne/SwfMapLoader</url>
@@ -51,7 +51,7 @@
         </dependency>
         <dependency>
             <groupId>com.jpexs</groupId>
-            <artifactId>ffdec</artifactId>
+            <artifactId>ffdec-lib</artifactId>
             <version>11.3.0</version>
         </dependency>
 
@@ -85,27 +85,25 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
+                <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4</version>
                 <executions>
                     <execution>
-                        <id>install-external</id>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <file>${project.basedir}/lib/ffdec/ffdec_lib.jar</file>
-                            <repositoryLayout>default</repositoryLayout>
-                            <groupId>com.jpexs</groupId>
-                            <artifactId>ffdec</artifactId>
-                            <version>11.3.0</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
+                        <phase>package</phase>
                         <goals>
-                            <goal>install-file</goal>
+                            <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.jpexs:*</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -231,4 +229,11 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>ffdec</id>
+            <url>https://github.com/Arakne/SwfMapLoader/raw/ffdec-dep-fix/lib</url>
+        </repository>
+    </repositories>
 </project>
