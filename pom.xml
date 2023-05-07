@@ -56,7 +56,7 @@
         <dependency>
             <groupId>fr.arakne</groupId>
             <artifactId>arakne-map</artifactId>
-            <version>[0.2-alpha,)</version>
+            <version>[0.6-alpha,)</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

@@ -116,7 +116,7 @@ final public class SwfFileLoader {
                     }
                 },
                 outdir.getAbsolutePath(),
-                new ScriptExportSettings(ScriptExportMode.AS, false),
+                new ScriptExportSettings(ScriptExportMode.AS, false, true),
                 false,
                 null
             );
@@ -125,7 +125,7 @@ final public class SwfFileLoader {
                 throw new IllegalArgumentException("Invalid SWF file : missing the ActionScript file");
             }
 
-            return parseActionScript(new FileInputStream(sources.get(0)));
+            return parseActionScript(Files.newInputStream(sources.get(0).toPath()));
         } finally {
             clearTemp(outdir);
         }
