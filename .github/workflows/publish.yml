@@ -6,14 +6,9 @@ on:
 
 jobs:
   publish:
+    name: Publish version ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Will start a Maven Central upload with version $GITHUB_REF_NAME"
-        if: ${{ github.ref_type == 'tag' }}
-
-      - run: echo "Will start a Maven Central snapshot upload"
-        if: ${{ github.ref_type != 'tag' }}
-
       - uses: actions/checkout@v2
 
       - name: Set up Maven Central Repository
@@ -26,8 +21,8 @@ jobs:
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
-      - name: Set projection version to $GITHUB_REF_NAME
-        run: mvn versions:set "-DnewVersion=$GITHUB_REF_NAME"
+      - name: Set project version to ${{ github.ref_name }}
+        run: mvn versions:set "-DnewVersion=${{ github.ref_name }}"
         if: ${{ github.ref_type == 'tag' }}
 
       - name: Publish package
