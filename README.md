@@ -1,7 +1,6 @@
 # Swf Map Loader
 [![CI](https://github.com/Arakne/SwfMapLoader/actions/workflows/ci.yaml/badge.svg)](https://github.com/Arakne/SwfMapLoader/actions/workflows/ci.yaml)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master) 
+[![codecov](https://codecov.io/gh/Arakne/SwfMapLoader/branch/master/graph/badge.svg?token=CQZL28ORQI)](https://codecov.io/gh/Arakne/SwfMapLoader)
 [![javadoc](https://javadoc.io/badge2/fr.arakne/swf-map-loader/javadoc.svg)](https://javadoc.io/doc/fr.arakne/swf-map-loader)
 [![Maven Central](https://img.shields.io/maven-central/v/fr.arakne/swf-map-loader)](https://search.maven.org/artifact/fr.arakne/swf-map-loader) 
  
@@ -38,7 +37,7 @@ public class MyMap extends SimpleMap<MyCell> {
 }
 
 // The AbstractCellDataAdapter should be the map implementation
-public class MyCell extends AbstractCellDataAdapter<MyMap> {
+public class MyCell extends AbstractCellDataAdapter<MyMap, MyCell> {
     public MyCell(MyMap map, CellData data, int id) {
         super(map, data, id);
     }
