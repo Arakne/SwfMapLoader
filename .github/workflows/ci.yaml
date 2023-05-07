@@ -43,7 +43,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Run tests
-        run: mvn --batch-mode verify
+        run: mvn --batch-mode verify -P 'ossrh,release-sign-artifacts'
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
