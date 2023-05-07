@@ -32,7 +32,7 @@
 
     <groupId>fr.arakne</groupId>
     <artifactId>swf-map-loader</artifactId>
-    <version>0.1-alpha</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Swf Map Loader</name>
     <description>Load Dofus 1.29 maps from SWF file.</description>
     <url>https://github.com/Arakne/SwfMapLoader</url>
@@ -56,7 +56,7 @@
         <dependency>
             <groupId>fr.arakne</groupId>
             <artifactId>arakne-map</artifactId>
-            <version>[0.2-alpha,)</version>
+            <version>[0.6-alpha,)</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -71,7 +71,7 @@
         <dependency>
             <groupId>com.jpexs</groupId>
             <artifactId>ffdec-lib</artifactId>
-            <version>11.3.0</version>
+            <version>18.4.1</version>
         </dependency>
 
         <dependency>

@@ -1,5 +1,8 @@
 # Swf Map Loader
-[![Build Status](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master) [![javadoc](https://javadoc.io/badge2/fr.arakne/swf-map-loader/javadoc.svg)](https://javadoc.io/doc/fr.arakne/swf-map-loader) [![Maven Central](https://img.shields.io/maven-central/v/fr.arakne/swf-map-loader)](https://search.maven.org/artifact/fr.arakne/swf-map-loader) 
+[![CI](https://github.com/Arakne/SwfMapLoader/actions/workflows/ci.yaml/badge.svg)](https://github.com/Arakne/SwfMapLoader/actions/workflows/ci.yaml)
+[![codecov](https://codecov.io/gh/Arakne/SwfMapLoader/branch/master/graph/badge.svg?token=CQZL28ORQI)](https://codecov.io/gh/Arakne/SwfMapLoader)
+[![javadoc](https://javadoc.io/badge2/fr.arakne/swf-map-loader/javadoc.svg)](https://javadoc.io/doc/fr.arakne/swf-map-loader)
+[![Maven Central](https://img.shields.io/maven-central/v/fr.arakne/swf-map-loader)](https://search.maven.org/artifact/fr.arakne/swf-map-loader) 
  
 Load and parse Dofus 1.29 maps from swf file and CDN.
 
@@ -11,7 +14,7 @@ For installing using maven, add this dependency into the `pom.xml` :
 <dependency>
     <groupId>fr.arakne</groupId>
     <artifactId>swf-map-loader</artifactId>
-    <version>0.1-alpha</version>
+    <version>0.2-alpha</version>
 </dependency>
 ```
 
@@ -34,7 +37,7 @@ public class MyMap extends SimpleMap<MyCell> {
 }
 
 // The AbstractCellDataAdapter should be the map implementation
-public class MyCell extends AbstractCellDataAdapter<MyMap> {
+public class MyCell extends AbstractCellDataAdapter<MyMap, MyCell> {
     public MyCell(MyMap map, CellData data, int id) {
         super(map, data, id);
     }
