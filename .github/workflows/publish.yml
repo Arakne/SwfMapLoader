@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Will start a Maven Central upload with version $GITHUB_REF_NAME"
-        if: $GITHUB_REF_TYPE == 'tag'
+        if: ${{ github.ref_type == 'tag' }}
 
       - run: echo "Will start a Maven Central snapshot upload"
-        if: $GITHUB_REF_TYPE != 'tag'
+        if: ${{ github.ref_type != 'tag' }}
 
       - uses: actions/checkout@v2
 
@@ -28,7 +28,7 @@ jobs:
 
       - name: Set projection version to $GITHUB_REF_NAME
         run: mvn versions:set "-DnewVersion=$GITHUB_REF_NAME"
-        if: $GITHUB_REF_TYPE == 'tag'
+        if: ${{ github.ref_type == 'tag' }}
 
       - name: Publish package
         run: mvn --batch-mode clean deploy
