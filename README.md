@@ -1,5 +1,9 @@
 # Swf Map Loader
-[![Build Status](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master) [![javadoc](https://javadoc.io/badge2/fr.arakne/swf-map-loader/javadoc.svg)](https://javadoc.io/doc/fr.arakne/swf-map-loader) [![Maven Central](https://img.shields.io/maven-central/v/fr.arakne/swf-map-loader)](https://search.maven.org/artifact/fr.arakne/swf-map-loader) 
+[![CI](https://github.com/Arakne/SwfMapLoader/actions/workflows/ci.yaml/badge.svg)](https://github.com/Arakne/SwfMapLoader/actions/workflows/ci.yaml)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Arakne/SwfMapLoader/?branch=master) 
+[![javadoc](https://javadoc.io/badge2/fr.arakne/swf-map-loader/javadoc.svg)](https://javadoc.io/doc/fr.arakne/swf-map-loader)
+[![Maven Central](https://img.shields.io/maven-central/v/fr.arakne/swf-map-loader)](https://search.maven.org/artifact/fr.arakne/swf-map-loader) 
  
 Load and parse Dofus 1.29 maps from swf file and CDN.
 
