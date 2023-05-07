@@ -71,7 +71,7 @@
         <dependency>
             <groupId>com.jpexs</groupId>
             <artifactId>ffdec-lib</artifactId>
-            <version>11.3.0</version>
+            <version>18.4.1</version>
         </dependency>
 
         <dependency>
